@@ -1,0 +1,81 @@
+/* Світла тема */
+.light-theme {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Темна тема */
+.dark-theme {
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+}
+
+/* Корекція елементів для тем */
+.dark-theme h1 {
+    color: #9ecbff;
+}
+
+.dark-theme h2 {
+    color: #cccccc;
+}
+
+.dark-theme a {
+    color: #7ed957;
+}
+
+.dark-theme a:hover {
+    color: #ff6b6b;
+}
+
+#themeToggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    background-color: #dddddd;
+}
+
+.dark-theme #themeToggle {
+    background-color: #333333;
+    color: #f0f0f0;
+}
+
+#greetingContainer {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#commentsContainer div {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+.dark-theme #commentsContainer div {
+    border-color: #555;
+}
+
+#ajaxContainer {
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid #aaa;
+}
+.dark-theme #ajaxContainer {
+    border-color: #666;
+}
+
+#jsonContainer div {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-left: 4px solid #4a90e2;
+    background-color: rgba(0, 0, 0, 0.03);
+}
+.dark-theme #jsonContainer div {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: #7aaeff;
+}

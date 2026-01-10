@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна робота №4</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Вітаю у світі WWW!</h1>
+    <button id="themeToggle">Змінити тему</button>
+</header>
+
+<main>
+    <h2>Про сторінку</h2>
+    <p>Це приклад простої вебсторінки, створеної в рамках лабораторної роботи №4.</p>
+    <h2>Список можливостей</h2>
+    <ul>
+        <li>Використання HTML-тегів</li>
+        <li>Зовнішні CSS-стилі</li>
+        <li>Адаптивна верстка з медіа-запитами</li>
+        <li>Можливість переключення теми</li>
+        <li>Реактивне вітання користувача</li>
+        <li>Динамічне додавання коментарів</li>
+        <li>Динамічне завантаження контенту</li>
+        <li>Завантаження структурованих даних</li>
+    </ul>
+
+    <h2>Персональне привітання</h2>
+    <label for="nameInput">Введіть ваше ім’я:</label><br>
+    <input type="text" id="nameInput" placeholder="Ваше ім’я">
+    <div id="greetingContainer"></div>
+
+    <h2>Динамічне завантаження контенту</h2>
+    <button id="loadDataBtn">Завантажити дані</button>
+    <div id="ajaxContainer"></div>
+
+    <h2>Завантаження структурованих даних (JSON)</h2>
+    <button id="loadJsonBtn">Завантажити дані</button>
+    <div id="jsonContainer"></div>
+
+    <h2>Коментарі</h2>
+    <form id="commentForm">
+    <label for="commentName">Ім’я:</label><br>
+    <input type="text" id="commentName" required><br><br>
+    <label for="commentText">Коментар:</label><br>
+    <textarea id="commentText" rows="3" required></textarea><br><br>
+    <button type="submit">Додати</button>
+    </form>
+    <div id="commentsContainer"></div>
+
+    <h2>Корисні посилання</h2>
+    <a href="https://validator.w3.org/" target="_blank">Перевірити валідність HTML</a>
+</main>
+<footer>
+    <p>© 2025. Студент групи 3-В. Барсуков Олександр.</p>
+</footer>
+
+<script>
+    const body = document.body;
+    const toggleButton = document.getElementById('themeToggle');
+    // Завантаження збереженої теми
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        body.classList.add(savedTheme);
+    } else {
+        body.classList.add('light-theme');
+    }
+    // Обробник натискання кнопки
+    toggleButton.addEventListener('click', () => {
+        if (body.classList.contains('light-theme')) {
+            body.classList.replace('light-theme', 'dark-theme');
+            localStorage.setItem('theme', 'dark-theme');
+        } else {
+            body.classList.replace('dark-theme', 'light-theme');
+            localStorage.setItem('theme', 'light-theme');
+        }
+    });
+</script>
+<script>
+    const nameInput = document.getElementById('nameInput');
+    const greetingContainer = document.getElementById('greetingContainer');
+    function handleNameInput(event) {
+        const name = event.target.value.trim();
+        if (name === '') {
+            greetingContainer.textContent = '';
+        } else {
+            greetingContainer.textContent = `Вітаємо, ${name}!`;
+        }
+    }
+    nameInput.addEventListener('input', handleNameInput);
+</script>
+<script>
+    const commentForm = document.getElementById('commentForm');
+    const commentName = document.getElementById('commentName');
+    const commentText = document.getElementById('commentText');
+    const commentsContainer = document.getElementById('commentsContainer');
+    commentForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const name = commentName.value.trim();
+        const text = commentText.value.trim();
+        if (name === '' || text === '') {
+            return;
+        }
+        // Створення елемента коментаря
+        const commentItem = document.createElement('div');
+        // Дочірній елемент: ім’я
+        const author = document.createElement('strong');
+        author.textContent = name;
+        // Дочірній елемент: текст коментаря
+        const commentBody = document.createElement('p');
+        commentBody.textContent = text;
+        // Формування структури
+        commentItem.appendChild(author);
+        commentItem.appendChild(commentBody);
+        // Додавання до контейнера
+        commentsContainer.appendChild(commentItem);
+        // Очищення полів форми
+        commentName.value = '';
+        commentText.value = '';
+    });
+</script>
+<script>
+    const loadDataBtn = document.getElementById('loadDataBtn');
+    const ajaxContainer = document.getElementById('ajaxContainer');
+    const DATA_URL = 'https://web2025-test-data.ikto.net/autumn-note.html';
+    loadDataBtn.addEventListener('click', async () => {
+        ajaxContainer.textContent = 'Завантаження...';
+        try {
+            const response = await fetch(DATA_URL);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const htmlContent = await response.text();
+            ajaxContainer.innerHTML = htmlContent;
+        } catch (error) {
+            ajaxContainer.textContent = 'Не вдалося завантажити дані';
+        }
+    });
+</script>
+<script>
+    const loadJsonBtn = document.getElementById('loadJsonBtn');
+    const jsonContainer = document.getElementById('jsonContainer');
+    const JSON_URL = 'https://web2025-test-data.ikto.net/comments.json';
+    loadJsonBtn.addEventListener('click', async () => {
+        jsonContainer.textContent = 'Завантаження...';
+        try {
+            const response = await fetch(JSON_URL);
+            if (!response.ok) {
+                throw new Error('Network error');
+            }
+            const data = await response.json();
+            // Очищаємо контейнер
+            jsonContainer.innerHTML = '';
+            // Побудова елементів на основі JSON
+            data.forEach(item => {
+                const commentDiv = document.createElement('div');
+                const author = document.createElement('strong');
+                author.textContent = item.name;
+                const text = document.createElement('p');
+                text.textContent = item.comment;
+                commentDiv.appendChild(author);
+                commentDiv.appendChild(text);
+                jsonContainer.appendChild(commentDiv);
+            });
+        } catch (error) {
+            jsonContainer.textContent = 'Не вдалося завантажити дані';
+        }
+    });
+</script>
+
+</body>
+</html>
