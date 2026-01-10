@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Результати введених даних</title>
+    <style>
+        table { border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #333; padding: 8px; }
+        .file-block { border: 1px solid #888; padding: 10px; margin-top: 15px; background: #f0f0f0; }
+        .filename { font-weight: bold; }
+        pre { white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+
+<h1>Останнє відправлення</h1>
+
+{% if latest.file %}
+<table>
+    <tr>
+        <th>Поле</th>
+        <th>Значення</th>
+    </tr>
+    <tr>
+        <td>Ім'я</td>
+        <td>{{ latest.name }}</td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td>{{ latest.email }}</td>
+    </tr>
+    <tr>
+        <td>Вік</td>
+        <td>{{ latest.age }}</td>
+    </tr>
+    <tr>
+        <td>Повідомлення</td>
+        <td>{{ latest.message }}</td>
+    </tr>
+    <tr>
+        <td>Файл</td>
+        <td>{{ latest.file }}</td>
+    </tr>
+</table>
+{% else %}
+<p>Немає даних останнього відправлення.</p>
+{% endif %}
+
+<h2>Усі збережені відправлення</h2>
+
+{% for file in all_files %}
+<div class="file-block">
+    <div class="filename">{{ file.filename }}</div>
+    <pre>{{ file.content }}</pre>
+</div>
+{% endfor %}
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма введення даних</title>
+    <style>
+        .error { color: red; }
+        .success { color: green; font-weight: bold; margin-top: 10px; }
+        button { margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<h1>Форма введення даних</h1>
+
+<form method="post" action="/form">
+    <label>
+        Ім'я:
+        <input type="text" name="name" value="{{ data.name }}">
+    </label>
+    {% if errors.name %}
+        <div class="error">{{ errors.name }}</div>
+    {% endif %}
+    <br><br>
+
+    <label>
+        Email:
+        <input type="text" name="email" value="{{ data.email }}">
+    </label>
+    {% if errors.email %}
+        <div class="error">{{ errors.email }}</div>
+    {% endif %}
+    <br><br>
+
+    <label>
+        Вік:
+        <input type="text" name="age" value="{{ data.age }}">
+    </label>
+    {% if errors.age %}
+        <div class="error">{{ errors.age }}</div>
+    {% endif %}
+    <br><br>
+
+    <label>
+        Повідомлення:
+        <textarea name="message">{{ data.message }}</textarea>
+    </label>
+    {% if errors.message %}
+        <div class="error">{{ errors.message }}</div>
+    {% endif %}
+    <br><br>
+
+    <button type="submit">Надіслати</button>
+</form>
+
+{% if valid %}
+    <div class="success">
+        Дані успішно збережено у файл: <strong>{{ saved_file }}</strong>
+    </div>
+
+    <!-- Кнопка для перегляду результатів -->
+    <form method="get" action="/result">
+        <input type="hidden" name="name" value="{{ data.name }}">
+        <input type="hidden" name="email" value="{{ data.email }}">
+        <input type="hidden" name="age" value="{{ data.age }}">
+        <input type="hidden" name="message" value="{{ data.message }}">
+        <input type="hidden" name="file" value="{{ saved_file }}">
+        <button type="submit">Переглянути результат</button>
+    </form>
+{% endif %}
+
+</body>
+</html>
