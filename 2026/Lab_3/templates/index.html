@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Collaborative Grid PWA</title>
+
+    <link rel="manifest" href="/manifest.json">
+
+    <meta name="theme-color" content="#1d9c5f">
+
+    <link rel="stylesheet" href="/static/styles.css">
+
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+
+</head>
+
+<body>
+
+    <h1>Collaborative Grid PWA</h1>
+
+    <div id="stats">
+        <p>Total cells: <span id="total">0</span></p>
+        <p>Filled cells: <span id="filled">0</span></p>
+        <p>Fill percent: <span id="percent">0%</span></p>
+        <p>Entropy: <span id="entropy">0</span></p>
+    </div>
+
+    <div id="pwa-state">
+        <p>Service Worker: <span id="sw-state">Перевірка...</span></p>
+        <p>Мережа: <span id="network-state">Unknown</span></p>
+        <p>Push: <span id="push-state">Не активовано</span></p>
+    </div>
+
+    <button id="subscribe-btn">
+        Увімкнути Push-сповіщення
+    </button>
+
+    <div id="grid"></div>
+
+    <script src="/static/app.js"></script>
+
+</body>
+
+</html>

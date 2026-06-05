@@ -1,0 +1,10 @@
+{
+    "https://fcm.googleapis.com/fcm/send/fsDKo5AKMMs:APA91bFNtEp9Cuwkr_9C3DJZOxbZeJ9TwMw2IEOuHgu3UWesUOD4a9TwFL_5-z1e1-zD4lL4y4KDzkfxtro03ffEnrNFLD6AjXWGNbJaEq5D_jzVWrDBaYnt9dtwb8CkCmGwdj6w17oC": {
+        "endpoint": "https://fcm.googleapis.com/fcm/send/fsDKo5AKMMs:APA91bFNtEp9Cuwkr_9C3DJZOxbZeJ9TwMw2IEOuHgu3UWesUOD4a9TwFL_5-z1e1-zD4lL4y4KDzkfxtro03ffEnrNFLD6AjXWGNbJaEq5D_jzVWrDBaYnt9dtwb8CkCmGwdj6w17oC",
+        "expirationTime": null,
+        "keys": {
+            "p256dh": "BHYaFfJg4jjdOUvdoDnR4V2TAeVbJxsl8P-jxv47DUeYPlXzZaFbrgPgvJIB0rAnGCeedFK3FmMYnFgBe84SlN8",
+            "auth": "iMNzG4ETRJNBN3-yxLv5Kw"
+        }
+    }
+}

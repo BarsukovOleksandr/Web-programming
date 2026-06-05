@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background: #f4f6f8;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(100, 10px);
+    gap: 1px;
+    margin-top: 20px;
+}
+
+.cell {
+    width: 10px;
+    height: 10px;
+    border: 1px solid #ccc;
+    background-color: white;
+    padding: 0;
+}
+
+.cell.active {
+    background-color: green;
+}
+
+#stats,
+#pwa-state {
+    margin-bottom: 15px;
+}
+
+button {
+    cursor: pointer;
+}
